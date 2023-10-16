@@ -1,0 +1,51 @@
+<div *ngIf="this.service.login==false" style="display: flex;flex-direction: row;justify-content: space-around;align-items: center;">
+    <div class="screen-1">
+        <div
+            style="margin: auto;display: flex;height: 200px;width: 100px;flex-direction: column;align-items: center;justify-content: center;">
+            <div class="img-login"></div>
+
+        </div>
+        <div class="email">
+            <label for="email">Email</label>
+            <div class="sec-2" style="text-align: center;">
+
+                <input style="background-color: rgb(205, 234, 255);" type="email" name="email" [(ngModel)]="user.email" placeholder="Username@gmail.com" />
+            </div>
+        </div>
+        <div class="password">
+            <label for="password">Senha</label>
+            <div class="sec-2" style="text-align: center;">
+
+                <input style="background-color: rgb(205, 234, 255);" class="pas" type="password" name="password" [(ngModel)]="user.password" placeholder="············" />
+
+            </div>
+        </div>
+        <button class="login1" (click)="login2()">Entrar </button>
+        <div class="footer"><span>Cadastro</span><span>Esqueceu a senha?</span></div>
+    </div>
+
+
+
+
+    <div class="screen-2">
+        
+        <body>
+            <div class="card-hover">
+              <div class="card-hover__content">
+                <h3 class="card-hover__title">
+                 Bem-vindo ao sistema!
+                </h3>
+                <p class="card-hover__text">Verifique com cuidado os seus dados quando se cadastrar e fizer o login.</p>
+                
+              </div>
+             
+              <img src="../../assets/deposito.png" alt="">
+            </div>
+          </body>
+    </div>
+</div>
+
+<div *ngIf="this.service.login==true">
+    <app-nav></app-nav>
+
+</div>

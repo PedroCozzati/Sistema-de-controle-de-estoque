@@ -1,0 +1,108 @@
+<jw-modal id="novo-produto" class="modal1">
+    <div class="box">
+      <div class="form-flex">
+        <div class="row33">
+          <!-- Form -->
+          <div class="col-md-12" style="width: 200px;">
+            <h1>Cadastrar novos produtos</h1>
+            <div>
+              <div class="form-group">
+                <label>Nome do produto</label>
+                <input type="text" class="form-control" maxlength="20" [(ngModel)]="produto.nome" />
+              </div>
+              <div class="form-group">
+                <label>Quantidade</label>
+                <input type="text" class="form-control" [(ngModel)]="produto.amount" />
+              </div>
+            </div>
+  
+  
+          </div>
+  
+  
+        </div>
+      </div>
+  
+    </div>
+    <div style="display: flex;flex-direction: row;margin-bottom: 10px;justify-content: space-between;">
+      <button type="submit" class="custom-btn btn-1" (click)="novoProduto(produto)">Adicionar</button>
+      <button type="submit" class="custom-btn btn-1" (click)="closeModal('novo-produto')">Voltar</button>
+    </div>
+  </jw-modal>
+  
+  <jw-modal id="edit-produto" class="modal1">
+    <div class="box">
+      <div class="form-flex">
+        <div class="row33">
+          <!-- Form -->
+          <div class="col-md-12" style="width: 200px;">
+            <h1>Editar produto</h1>
+            <div>
+              <div class="form-group">
+                <label>Nome do produto</label>
+                <input type="text" class="form-control" maxlength="20" [(ngModel)]="produto.nome" />
+              </div>
+              <div class="form-group">
+                <label>Quantidade</label>
+                <input type="text" class="form-control" [(ngModel)]="produto.amount" />
+              </div>
+            </div>
+  
+  
+          </div>
+  
+  
+        </div>
+      </div>
+  
+    </div>
+    <div style="display: flex;flex-direction: row;margin-bottom: 10px;justify-content: space-between;">
+      <button type="submit" class="custom-btn btn-1" (click)="editProduto(produto)">Editar</button>
+      <button type="submit" class="custom-btn btn-1" (click)="closeModal('edit-produto')">Voltar</button>
+    </div>
+  </jw-modal>
+  
+  <div class="border">
+    <div class="grid-container">
+      <h1 class="mat-h1">Usuários</h1>
+      <div style="margin-left: 50px;">
+        <!-- <button type="submit" style="width: 200px;margin-bottom: 40px;" class="custom-btn btn-1"
+          (click)="openModal('novo-produto')">Cadastrar novo Produto</button> -->
+  
+      </div>
+  
+    </div>
+  </div>
+  
+  <div class="scrollit" style="margin-top: 100px;">
+    <div class="container">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-1">Id</div>
+          <div class="col col-2">Usuário</div>
+          <div class="col col-3">Email</div>
+          <div class="col col-4">Status</div>
+          <!-- <div class="col col-4">Data de registro</div> -->
+          <div class="col col-5">Edição</div>
+          <div class="col col-6">Remover</div>
+        </li>
+        <li class="table-row" *ngFor="let p of produtos">
+          <div class="col col-1" data-label="Job Id">{{ p.id }}</div>
+          <div class="col col-2" data-label="Customer Name">{{ p.user_name }}</div>
+          <div class="col col-3" data-label="Amount">{{ p.email }}</div>
+          <div class="col col-4" data-label="Payment Status">{{ p.is_logged }}</div>
+          <!-- <div class="col col-4" data-label="Payment Status">{{ p.register_date }}</div> -->
+          <div class="col col-5" data-label="Edit">
+            <button type="button" class="custom-btn btn-2"  (click)="openModalEdit(p.id)">
+              Editar
+            </button>
+          </div>
+          <div class="col col-6" data-label="Remove">
+            <button type="button" class="custom-btn btn-3"  (click)="removeProduto(p.id)">
+              Remover
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
