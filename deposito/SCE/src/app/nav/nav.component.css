@@ -35,7 +35,8 @@ html, body {
   --distance:20px
 }
 #nav-toggle:checked ~ #nav-header {
-  width: calc(var(--navbar-width-min) - 16px);
+  width: calc(var(--navbar-width-min));
+  margin-right: 20px;
 }
 #nav-toggle:checked ~ #nav-content, #nav-toggle:checked ~ #nav-footer {
   width: var(--navbar-width-min);
@@ -306,7 +307,7 @@ label[for=nav-toggle] {
 #nav-footer-heading {
   position: relative;
   width: 100%;
-  height: 54px;
+  height: 84px;
   display: flex;
   align-items: center;
 }
