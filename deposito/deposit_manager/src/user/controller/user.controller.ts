@@ -40,7 +40,10 @@ export class UserController {
         }
       }
 
-  @Get("/login")
+
+
+
+  @Post("/login")
   async login(@Query('email') nome: string, @Query('password') senha: string, @Res() response: Response): Promise<any> {
     try {
 
@@ -58,11 +61,29 @@ export class UserController {
       return response.status(HttpStatus.BAD_REQUEST).json(exception)
     }
   }
-  @Get("/logoff")
+  @Post("/logoff")
   async logoff(@Query('email') nome: string, @Query('password') senha: string, @Res() response: Response): Promise<any> {
     try {
 
       return response.status(HttpStatus.OK).json(await this.userService.logOff(nome, senha))
+    } catch (exception) {
+      return response.status(HttpStatus.BAD_REQUEST).json(exception)
+    }
+  }
+
+  @Post("/activate")
+  async activate(@Body('email') user_email: string, @Res() response: Response): Promise<any> {
+    try {
+      return response.status(HttpStatus.OK).json(await this.userService.activate(user_email))
+    } catch (exception) {
+      return response.status(HttpStatus.BAD_REQUEST).json(exception)
+    }
+  }
+
+  @Post("/inactivate")
+  async inactivate(@Body('email') user_email: string, @Res() response: Response): Promise<any> {
+    try {
+      return response.status(HttpStatus.OK).json(await this.userService.inactivateUser(user_email))
     } catch (exception) {
       return response.status(HttpStatus.BAD_REQUEST).json(exception)
     }
@@ -73,6 +94,24 @@ export class UserController {
   async getAllUsers(@Res() response: Response): Promise<any> {
     try {
       return response.status(HttpStatus.OK).json(await this.userService.getAllUsuarios())
+    } catch (exception) {
+      return response.status(HttpStatus.BAD_REQUEST).json(exception)
+    }
+  }
+
+  @Get("/users-active")
+  async getActiveUsers(@Res() response: Response): Promise<any> {
+    try {
+      return response.status(HttpStatus.OK).json(await this.userService.getActiveUsers())
+    } catch (exception) {
+      return response.status(HttpStatus.BAD_REQUEST).json(exception)
+    }
+  }
+
+  @Get("/users-inactive")
+  async getNonActiveUsers(@Res() response: Response): Promise<any> {
+    try {
+      return response.status(HttpStatus.OK).json(await this.userService.getInactiveUsers())
     } catch (exception) {
       return response.status(HttpStatus.BAD_REQUEST).json(exception)
     }

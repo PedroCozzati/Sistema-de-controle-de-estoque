@@ -1,5 +1,6 @@
 export class UserDto {
-
+    image: string
+    
     user_name: string
 
     email: string
@@ -9,5 +10,7 @@ export class UserDto {
     is_adm:boolean
 
     is_logged:boolean
+
+    active:boolean
 
 }
