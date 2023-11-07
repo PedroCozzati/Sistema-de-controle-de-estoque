@@ -225,7 +225,7 @@ button{
     align-items: center;
     align-content: center;
     width: 20vw !important;
-    height: 30vh !important;
+    height: 40vh !important;
     padding: 20px;
   background-blend-mode:multiply;
   background-color: #e4dfff ;
@@ -298,19 +298,7 @@ button{
    
 
    
-   .box{
-    /* background:url("/assets/bgtest.png"); 
- background-repeat: no-repeat;
- background-size:cover;
- background-repeat: repeat;
-    position:absolute;
-    background-color: rgb(48, 21, 73);
-    
-    top:0px;
-    right:0px;
-    bottom:0px;
-    left:0px; */
-}
+
 
 
 .scrollit {
@@ -385,10 +373,10 @@ h2 small {
   flex-basis: 15%;
 }
 .responsive-table .col-4 {
-  flex-basis: 95%;
+  flex-basis: 15%;
 }
 .responsive-table .col-5 {
-  flex-basis: 15%;
+  flex-basis: 20%;
 }
 .responsive-table .col-6 {
   flex-basis: 15%;

@@ -1,51 +1,102 @@
 <jw-modal id="novo-produto" class="modal1">
-  <div class="box">
+  <div class="box1">
     <div class="form-flex">
       <div class="row33">
         <!-- Form -->
-        <div class="col-md-12" style="width: 200px;">
-          <h1>Cadastrar novos produtos</h1>
-          <div>
-            <div class="form-group">
-              <label>Nome do produto</label>
-              <input type="text" class="form-control" maxlength="20" [(ngModel)]="produto.nome" />
+        <div class="col-md-12" style="display: flex;flex-direction: column;justify-content: space-around;height: 40vh;">
+          <h1>Inserir novo produto</h1>
+          <div style="display: flex;flex-direction: column;justify-content: space-around;">
+            <div class="form-group" style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+              <div style="display: flex;flex-direction: row;">
+                <div>
+                  <img src={{produto.image}} height="50px" width="50px">
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                  <label>URL da imagem</label>
+                  <input type="text" (paste)=true  [(ngModel)]="produto.image" />
+                </div>
+              </div>
+             
+              
+
             </div>
-            <div class="form-group">
+
+            <div class="form-group" style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+              <label>Quantidade</label>
+              <input
+                  [(ngModel)]="produto.amount"
+                  type="number"
+                  id="myNumber"/>
+            </div>
+              
+            <div class="form-group" style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+              <label>Nome do produto</label>
+              <input type="text" class="form-control" maxlength="50" height="120px" [(ngModel)]="produto.nome" />
+            </div>
+            <!-- <div class="form-group">
               <label>Quantidade</label>
               <input type="text" class="form-control" [(ngModel)]="produto.amount" />
-            </div>
+            </div> -->
           </div>
-
+          <div style="display: flex;flex-direction: row;margin-top: 20px;justify-content: space-between;">
+            <button type="submit" class="custom-btn btn-1" (click)="novoProduto(produto)">Adicionar</button>
+            <button type="submit" class="custom-btn btn-1" (click)="closeModal('novo-produto')">Voltar</button>
+          </div>
 
         </div>
 
-
+       
       </div>
     </div>
 
   </div>
-  <div style="display: flex;flex-direction: row;margin-bottom: 10px;justify-content: space-between;">
-    <button type="submit" class="custom-btn btn-1" (click)="novoProduto(produto)">Adicionar</button>
-    <button type="submit" class="custom-btn btn-1" (click)="closeModal('novo-produto')">Voltar</button>
-  </div>
+  
 </jw-modal>
 
 <jw-modal id="edit-produto" class="modal1">
-  <div class="box">
+  <div class="box2">
     <div class="form-flex">
       <div class="row33">
         <!-- Form -->
         <div class="col-md-12" style="width: 200px;">
           <h1>Editar produto</h1>
-          <div>
-            <div class="form-group">
-              <label>Nome do produto</label>
-              <input type="text" class="form-control" maxlength="20" [(ngModel)]="produto.nome" />
+          <div style="display: flex;flex-direction: column;justify-content: space-around;">
+            <div class="form-group" style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+              <div style="display: flex;flex-direction: row;">
+                <div>
+                  <img src={{produto.image}} height="50px" width="50px">
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                  <label>URL da imagem</label>
+                  <input type="text" (paste)=true  [(ngModel)]="produto.image" />
+                </div>
+              </div>
+             
+              
+
             </div>
-            <div class="form-group">
+
+            <div class="form-group" style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+              <label>Quantidade</label>
+              <input
+                  [(ngModel)]="produto.amount"
+                  type="number"
+                  id="myNumber"/>
+            </div>
+              
+            <div class="form-group" style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+              <label>Nome do produto</label>
+              <input type="text" class="form-control" maxlength="90" height="120px" [(ngModel)]="produto.product_name" />
+            </div>
+            <!-- <div class="form-group">
               <label>Quantidade</label>
               <input type="text" class="form-control" [(ngModel)]="produto.amount" />
-            </div>
+            </div> -->
+          </div>
+
+          <div style="display: flex;flex-direction: row;margin-bottom: 10px;justify-content: space-between;">
+            <button type="submit" class="custom-btn btn-1" (click)="editProduto(produto)">Editar</button>
+            <button type="submit" class="custom-btn btn-1" (click)="closeModal('edit-produto')">Voltar</button>
           </div>
 
 
@@ -56,10 +107,7 @@
     </div>
 
   </div>
-  <div style="display: flex;flex-direction: row;margin-bottom: 10px;justify-content: space-between;">
-    <button type="submit" class="custom-btn btn-1" (click)="editProduto(produto)">Editar</button>
-    <button type="submit" class="custom-btn btn-1" (click)="closeModal('edit-produto')">Voltar</button>
-  </div>
+  
 </jw-modal>
 
 <div class="border">
@@ -79,19 +127,26 @@
     <ul class="responsive-table">
       <li class="table-header">
         <div class="col col-1">Id</div>
-        <div class="col col-2">Nome do produto</div>
-        <div class="col col-3">Quantidade</div>
-        <div class="col col-4">Data de registro</div>
-        <div class="col col-5">Edição</div>
+        <div class="col col-2">Imagem</div>
+        <div class="col col-3">Nome do produto</div>
+        <div class="col col-4">Quantidade</div>
+        <div class="col col-5">Data de registro</div>
+        <div class="col col-6">Edição</div>
         <div class="col col-6">Remover</div>
       </li>
       <li class="table-row" *ngFor="let p of produtos">
         <div class="col col-1" data-label="Job Id">{{ p.id }}</div>
-        <div class="col col-2" data-label="Customer Name">{{ p.product_name }}</div>
-        <div class="col col-3" data-label="Amount">{{ p.amount }}</div>
-        <div class="col col-4" data-label="Payment Status">{{ p.productDate }}</div>
-        <div class="col col-5" data-label="Edit">
-          <button type="button" class="custom-btn btn-2"  (click)="openModalEdit(p.id)">
+        <div class="col col-2" data-label="Customer Name">
+          <!-- <img src={{p.image}} height="20px" width="20px"> -->
+          <img src = {{p.image}} width = "50px" height = "50px"/>
+      
+        
+        </div>
+        <div class="col col-3" data-label="Amount">{{ p.product_name }}</div>
+        <div class="col col-4" data-label="Amount">{{ p.amount }}</div>
+        <div class="col col-5" data-label="Payment Status">{{ p.productDate }}</div>
+        <div class="col col-6" data-label="Edit">
+          <button type="button" class="custom-btn btn-2"  (click)="openModalEdit(p)">
             Editar
           </button>
         </div>

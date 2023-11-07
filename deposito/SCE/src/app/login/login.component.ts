@@ -60,7 +60,7 @@ export class LoginComponent {
   }
 
   login() {
-    this.http.get
+    this.http.post
       (`http://localhost:3000/login?email=${this.user.email}&senha=${this.user.password}`, { headers: { "Content-Type": 'application/json' } })
       .subscribe(
         res => {
@@ -75,7 +75,7 @@ export class LoginComponent {
         },
         err => {
           this.service.login = false
-          alert("nao encontrado")
+          alert("Usuario não ativo, entre em contato com o ADM")
         });
   }
 

@@ -8,7 +8,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './nav/nav.component';
@@ -26,12 +25,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RootComponent } from './root/root.component';
 import { UsersComponent } from './users/users.component';
+import { ClientsComponent } from './clients/clients.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
 
     AppComponent,
-    DashboardComponent,
     NavComponent,
     ProductsComponent,
     DashComponent,
@@ -39,7 +39,9 @@ import { UsersComponent } from './users/users.component';
     AnnualSalesComponent,
     LoginComponent,
     RootComponent,
-    UsersComponent
+    UsersComponent,
+    ClientsComponent,
+    OrdersComponent
   ],
   imports: [
     AppRoutingModule,

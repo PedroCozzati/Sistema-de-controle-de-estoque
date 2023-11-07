@@ -18,6 +18,9 @@ export class ProductsComponent {
   produto: any = {}
   produtos: any = []
 
+  file_string:string
+  file:any
+  url:any
   ngOnInit(): void {
     this.consultaProdutos()
   }
@@ -29,9 +32,10 @@ export class ProductsComponent {
     this.modalService.open(id);
   }
 
-  openModalEdit(id:number){
+  openModalEdit(product:any){
     this.modalService.open('edit-produto');
-    this.temp_id=id
+    this.produto = product
+    this.temp_id=product.id
   }
   closeModal(id:string){
     this.modalService.close(id)
@@ -42,14 +46,15 @@ export class ProductsComponent {
     this.http.post(`http://localhost:3000/product`, 
     {
       product_name:produto.nome,
-      amount:produto.amount,
+      amount: produto.amount,
+      image:produto.image,
     }, 
     { headers: { "Content-Type": 'application/json' } })
       .subscribe(response => {
       })
       this.modalService.close('novo-produto')
       this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['products']);
+        this.router.navigate(['produtos']);
     }); 
 
   }
@@ -57,7 +62,7 @@ export class ProductsComponent {
   editProduto(produto: any) {
     this.http.put(`http://localhost:3000/product/${this.temp_id}`, 
     {
-      product_name:produto.nome,
+      product_name:produto.product_name,
       amount:produto.amount,
     }, 
     { headers: { "Content-Type": 'application/json' } })
@@ -65,7 +70,7 @@ export class ProductsComponent {
       })
       this.modalService.close('edit-produto')
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['products']);
+        this.router.navigate(['produtos']);
     }); 
 
   }
@@ -76,7 +81,7 @@ export class ProductsComponent {
       .subscribe(response => {
       })
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['products']);
+        this.router.navigate(['produtos']);
     }); 
 
   }
@@ -87,4 +92,37 @@ export class ProductsComponent {
         this.produtos = response
       })
   }
-}
+
+  // handleImage(image:any){
+  //   image = image.toString("binary")
+  //   return image
+  // }
+  handleClick() {
+    document.getElementById('upload-file')!.click();
+  }
+  
+  addAttachment(fileInput: any) {
+    this.file = fileInput.files[0];
+    var reader = new FileReader();
+    reader.onload = (event:any) => {
+      this.file = event.target.result.toString("base64");   
+      alert(event.target.result)
+   }
+    reader.readAsDataURL(this.file);
+
+    // this.file_string=this.file.toString()
+    // alert(this.file)
+  }
+
+    // this.produto.file = fileInput.target.files[0];
+    // var reader = new FileReader();
+    // reader.onload = (event:any) => {
+    //   this.produto.file = event.target.result;   
+   }
+  //  alert(reader.readAsDataURL(this.produto.file));
+ 
+    // console.log(fileInput.target.files[0].toString())
+    // alert(this.produto.file.toString())
+  
+    //  handle the rest 
+
