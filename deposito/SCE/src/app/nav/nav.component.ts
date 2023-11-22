@@ -24,7 +24,6 @@ export class NavComponent {
     private ngZone: NgZone,
     public service: AppService,
     private local: LocalStorageService,
-   
     private router: Router,
     ) {}
   
@@ -32,7 +31,7 @@ export class NavComponent {
   isLogin=true
   is_logged={}
   user:any
-  menuItems = ["dashboard", "pedidos", "clientes", "produtos"];
+  menuItems = ["dashboard", "pedidos", "clientes", "produtos", "fornecedores", "expedicoes","estoques"];
   
 
   ngOnInit(): void {
@@ -42,6 +41,7 @@ export class NavComponent {
     this.user = this.local.get('user');
 
     console.log(this.local.get('user'))
+
     this.http.get(`http://localhost:3000/user?email=${this.user.email}&senha=${this.user.password}`, { headers: { "Content-Type": 'application/json' } })
         .subscribe(response => {
          test = response
@@ -54,16 +54,11 @@ export class NavComponent {
           this.menuItems.push('usuarios')
         }
         
-    
       })
-
-      
-
 
       // if (this.local.get('is_adm')==true)
       // {
-      //   this.menuItems.push('users')
-    
+      // this.menuItems.push('users')
       // }
 
       if (!localStorage.getItem('foo')) { 

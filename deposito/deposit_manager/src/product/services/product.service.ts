@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Product } from '../entity/product.entity';
 import { ProductDto } from '../dto/product.dto';
+import { InventoryDto } from 'src/inventory/dto/inventory.dto';
 
 @Injectable()
 export class ProductService {
@@ -10,7 +11,7 @@ export class ProductService {
     constructor(@InjectRepository(Product) private readonly productRepository: Repository<Product>) { }
 
 
-    async insereProduto(product: ProductDto) {
+    async solicitaProduto(product: ProductDto, inventory: InventoryDto) {
         try {
             await this.productRepository.save(
                 {
@@ -30,14 +31,40 @@ export class ProductService {
 
     async getAllProdutos() {
         try {
-            var product = await this.productRepository.find({})
-            return  product
+            var product = await this.productRepository.find({
+                relations: {
+                    supplier:true,
+                    // inventory: true,
+                },
+            },
+            )
+            if (product)
+                return product
+           
         }
         catch (exception) {
             throw exception
         }
 
     }
+
+    async getProduto(id:number) {
+        try {
+            var product = await this.productRepository.findOne({
+                where: { id },
+                relations: ['supplier', 'inventory'], 
+            });
+
+            if (product) {
+                return product;
+            }
+        }
+        catch (exception) {
+            throw exception
+        }
+
+    }
+
 
     async getQuantidadeProduto() {
         try {
@@ -61,6 +88,20 @@ export class ProductService {
         try {
 
             await this.productRepository.update(product.id,product)
+
+            return;
+        }
+        catch (exception) {
+            throw exception
+        }
+
+    }
+
+
+    async atualizaQuantidade(produto:any) {
+        try {
+
+            await this.productRepository.update(produto.id,{amount:produto.amount+produto.new_amount})
 
             return;
         }

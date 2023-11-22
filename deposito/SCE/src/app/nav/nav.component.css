@@ -133,7 +133,10 @@ html, body {
 #nav-title {
   font-size: 1.5rem;
   transition: opacity 1s;
+  margin-left: 10px;
 }
+
+
 
 label[for=nav-toggle] {
   position: absolute;
@@ -144,6 +147,10 @@ label[for=nav-toggle] {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+label[for=nav-toggle]:hover{
+  background-color: #b2a3f544;
 }
 
 #nav-toggle-burger {
@@ -169,10 +176,13 @@ label[for=nav-toggle] {
   top: 6px;
   transform: translate(2px, -8px) rotate(-30deg);
 }
-
+#nav-toggle:hover{
+  background-color: #9c88ff;
+  color: #9c88ff;
+}
 #nav-content {
   margin: -16px 0;
-  padding: 16px 0;
+  padding: 16px 10px;
   position: relative;
   flex: 1;
   width: var(--navbar-width);
@@ -425,7 +435,7 @@ label[for=nav-footer-toggle] {
   font-size: 20px;
   width: 82%;
   height: 50px;
-  margin-left: 450px;
+  margin-left: 470px;
 }
 .header.suspended   { right:  350px;width: 93% }
 .header.active      { right: 150px; }
@@ -448,7 +458,7 @@ label[for=nav-footer-toggle] {
   font-size: 20px;
   width: 82%;
   height: 50px;
-  margin-left: 120px;
+  margin-left: 140px;
 }
 
 .footer.suspended   { right:  350px;width: 91% }

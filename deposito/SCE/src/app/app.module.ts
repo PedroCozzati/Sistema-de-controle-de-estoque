@@ -27,6 +27,9 @@ import { RootComponent } from './root/root.component';
 import { UsersComponent } from './users/users.component';
 import { ClientsComponent } from './clients/clients.component';
 import { OrdersComponent } from './orders/orders.component';
+import { FornecedoresComponent } from './fornecedores/fornecedores.component';
+import { ExpedicoesComponent } from './expedicoes/expedicoes.component';
+import { EstoquesComponent } from './estoques/estoques.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { OrdersComponent } from './orders/orders.component';
     RootComponent,
     UsersComponent,
     ClientsComponent,
-    OrdersComponent
+    OrdersComponent,
+    FornecedoresComponent,
+    ExpedicoesComponent,
+    EstoquesComponent
   ],
   imports: [
     AppRoutingModule,

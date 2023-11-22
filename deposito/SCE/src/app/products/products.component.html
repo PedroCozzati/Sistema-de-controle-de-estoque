@@ -4,40 +4,75 @@
       <div class="row33">
         <!-- Form -->
         <div class="col-md-12" style="display: flex;flex-direction: column;justify-content: space-around;height: 40vh;">
-          <h1>Inserir novo produto</h1>
+          <h1>Solicitação de produtos</h1>
           <div style="display: flex;flex-direction: column;justify-content: space-around;">
-            <div class="form-group" style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+            <div class="form-group"
+              style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
               <div style="display: flex;flex-direction: row;">
                 <div>
                   <img src={{produto.image}} height="50px" width="50px">
                 </div>
                 <div style="display: flex;flex-direction: column;">
                   <label>URL da imagem</label>
-                  <input type="text" (paste)=true  [(ngModel)]="produto.image" />
+                  <input type="text" (paste)=true [(ngModel)]="produto.image" />
                 </div>
               </div>
-             
-              
+
+
 
             </div>
 
-            <div class="form-group" style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+            <div class="form-group"
+              style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
               <label>Quantidade</label>
-              <input
-                  [(ngModel)]="produto.amount"
-                  type="number"
-                  id="myNumber"/>
+              <input [(ngModel)]="produto.amount" type="number" id="myNumber" />
             </div>
-              
-            <div class="form-group" style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+
+            <div class="form-group"
+              style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
               <label>Nome do produto</label>
               <input type="text" class="form-control" maxlength="50" height="120px" [(ngModel)]="produto.nome" />
             </div>
+
+
+            <div style="display: flex;flex-direction: row;justify-content: space-around;align-items: center;">
+              <div class="form-group"
+                style="height: 50px;width: 200px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+                <label>Fornecedor</label>
+                <label class="form-control"
+                  style="background-color: rgb(255, 255, 255);border: 1px solid black; border-radius: 20px;height: 27px;">{{fornecedor.name}}</label>
+
+              </div>
+
+              <button (click)="openModalMenu('select-fornecedor')" class="custom-btn2 btn-4" style="width: 20px;">
+                +
+              </button>
+
+            </div>
+
+            <div style="display: flex;flex-direction: row;justify-content: space-around;align-items: center;">
+
+              <div class="form-group"
+                style="height: 50px;width: 200px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+                <label>Estoque</label>
+                <label
+                  style="background-color: rgb(255, 255, 255);border: 1px solid black; border-radius: 20px;height: 27px;">{{estoque.name}}</label>
+
+              </div>
+
+              <button class="custom-btn2 btn-4" style="width: 20px;" (click)="openModalMenu('select-estoque')">
+                +
+              </button>
+            </div>
+
+
+
             <!-- <div class="form-group">
               <label>Quantidade</label>
               <input type="text" class="form-control" [(ngModel)]="produto.amount" />
             </div> -->
           </div>
+
           <div style="display: flex;flex-direction: row;margin-top: 20px;justify-content: space-between;">
             <button type="submit" class="custom-btn btn-1" (click)="novoProduto(produto)">Adicionar</button>
             <button type="submit" class="custom-btn btn-1" (click)="closeModal('novo-produto')">Voltar</button>
@@ -45,49 +80,31 @@
 
         </div>
 
-       
+
       </div>
     </div>
 
   </div>
-  
+
 </jw-modal>
 
-<jw-modal id="edit-produto" class="modal1">
+<jw-modal id="edit-produto" class="modal0">
   <div class="box2">
     <div class="form-flex">
       <div class="row33">
         <!-- Form -->
-        <div class="col-md-12" style="width: 200px;">
-          <h1>Editar produto</h1>
+        <div class="col-md-12" style="width: 300px;">
+          <h1>Solicitar mais produtos</h1>
           <div style="display: flex;flex-direction: column;justify-content: space-around;">
-            <div class="form-group" style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
-              <div style="display: flex;flex-direction: row;">
-                <div>
-                  <img src={{produto.image}} height="50px" width="50px">
-                </div>
-                <div style="display: flex;flex-direction: column;">
-                  <label>URL da imagem</label>
-                  <input type="text" (paste)=true  [(ngModel)]="produto.image" />
-                </div>
-              </div>
-             
-              
 
+
+            <div class="form-group"
+              style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+              <label>Quantidade de produtos</label>
+              <input [(ngModel)]="produto.new_amount" type="number" id="myNumber" />
             </div>
 
-            <div class="form-group" style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
-              <label>Quantidade</label>
-              <input
-                  [(ngModel)]="produto.amount"
-                  type="number"
-                  id="myNumber"/>
-            </div>
-              
-            <div class="form-group" style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
-              <label>Nome do produto</label>
-              <input type="text" class="form-control" maxlength="90" height="120px" [(ngModel)]="produto.product_name" />
-            </div>
+
             <!-- <div class="form-group">
               <label>Quantidade</label>
               <input type="text" class="form-control" [(ngModel)]="produto.amount" />
@@ -95,7 +112,8 @@
           </div>
 
           <div style="display: flex;flex-direction: row;margin-bottom: 10px;justify-content: space-between;">
-            <button type="submit" class="custom-btn btn-1" (click)="editProduto(produto)">Editar</button>
+            <button type="submit" class="custom-btn btn-1" style="width: 160px;"
+              (click)="editProduto(produto)">Solicitar essa quantidade</button>
             <button type="submit" class="custom-btn btn-1" (click)="closeModal('edit-produto')">Voltar</button>
           </div>
 
@@ -107,15 +125,99 @@
     </div>
 
   </div>
-  
+
+</jw-modal>
+
+<jw-modal id="atencao" class="modal0">
+  <div class="box2">
+    <div class="form-flex">
+      <div class="row33">
+        <!-- Form -->
+        <div class="col-md-12" style="width: 300px;">
+          <h1>Tem certeza?</h1>
+          <div style="display: flex;flex-direction: column;justify-content: space-around;">
+
+
+            <div class="form-group"
+              style="height: 50px;display: flex;flex-direction: column;justify-content: center;text-align: center;margin-bottom: 20px;">
+              <label>Essa ação é irreversível, ao descartar esse produto, ele será movido para o estoque de produtos descartados e não poderá ser comercializado</label>
+            </div>
+
+
+            <!-- <div class="form-group">
+              <label>Quantidade</label>
+              <input type="text" class="form-control" [(ngModel)]="produto.amount" />
+            </div> -->
+          </div>
+
+          <div style="display: flex;flex-direction: row;margin-bottom: 10px;justify-content: space-between;">
+            <button type="submit" class="custom-btn btn-1" style="width: 160px;" (click)="descartar()">Sim</button>
+            <button type="submit" class="custom-btn btn-1" (click)="closeModal('atencao')">Voltar</button>
+          </div>
+
+
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+
 </jw-modal>
 
 <div class="border">
   <div class="grid-container">
     <h1 class="mat-h1">Produtos</h1>
-    <div style="margin-left: 50px;">
+    <div style="margin-left: 50px;display: flex;justify-content: space-between;margin-top: 40px;">
       <button type="submit" style="width: 200px;margin-bottom: 40px;" class="custom-btn btn-1"
-        (click)="openModal('novo-produto')">Cadastrar novo Produto</button>
+        (click)="openModal('novo-produto')">Solicitar produtos</button>
+
+
+
+
+
+        <div *ngIf="this.is_dump==false" class="sec-center" style="width: 700px;">
+          <div class="wrap">
+            <div class="search">
+               <input [(ngModel)]="nome_produto" type="text" class="searchTerm" placeholder="Buscar produto...">
+               <button (click)="findProductsByName(nome_produto)" type="submit" class="searchButton">
+                 <i class="fa fa-search"></i>
+              </button>
+            </div>
+         </div>
+  
+  
+        </div>
+        <div *ngIf="this.is_dump==true" class="sec-center" style="width: 700px;">
+          
+  
+  
+        </div>
+
+
+      <div class="sec-center">
+        <label [ngClass]="{'btn-1':this.is_dump==true,'btn-2 !important':this.is_dump==false}" class="custom-btn" style="width: 160px;" (click)="consultaDescartados()">Ver descartados <i class="uil uil-arrow-down"></i></label>
+
+
+      </div>
+
+      <div class="sec-center">
+        <label  [ngClass]="{'btn-1 !important':this.is_dump==false,'btn-2 !important':this.is_dump==true}" class="custom-btn" style="width: 160px;" (click)="getAllProducts()">Ver todos <i class="uil uil-arrow-down"></i></label>
+
+
+      </div>
+      <div class="sec-center">
+        <input class="dropdown" type="checkbox" id="dropdown" name="dropdown" />
+        <label class="custom-btn btn-2" style="background: black !important;" for="dropdown">Ver por estoque ↓ <i class="uil uil-arrow-down"></i></label>
+        <div class="section-dropdown">
+
+          <div *ngFor="let item of estoques">
+            <a (click)="getFromInventory(item)">{{item.name!="Estoque 11 - Produtos Descartados"?item.name:""}}</a>
+            <i class="uil uil-arrow-right"></i>
+          </div>
+        </div>
+      </div>
 
     </div>
 
@@ -130,32 +232,59 @@
         <div class="col col-2">Imagem</div>
         <div class="col col-3">Nome do produto</div>
         <div class="col col-4">Quantidade</div>
+        <div class="col col-4">Fornecedor</div>
+        
         <div class="col col-5">Data de registro</div>
-        <div class="col col-6">Edição</div>
-        <div class="col col-6">Remover</div>
+        <div *ngIf="this.is_dump==false" class="col col-6">Solicitar novos produtos</div>
+        <div *ngIf="this.is_dump==false" class="col col-6">Descartar produto</div>
+
       </li>
       <li class="table-row" *ngFor="let p of produtos">
         <div class="col col-1" data-label="Job Id">{{ p.id }}</div>
         <div class="col col-2" data-label="Customer Name">
           <!-- <img src={{p.image}} height="20px" width="20px"> -->
-          <img src = {{p.image}} width = "50px" height = "50px"/>
-      
-        
+          <img src={{p.image}} width="50px" height="50px" />
+
+
         </div>
         <div class="col col-3" data-label="Amount">{{ p.product_name }}</div>
         <div class="col col-4" data-label="Amount">{{ p.amount }}</div>
+        <div class="col col-3" data-label="Amount">{{ p.supplier!=null? p.supplier[0].name:""}}</div>
         <div class="col col-5" data-label="Payment Status">{{ p.productDate }}</div>
-        <div class="col col-6" data-label="Edit">
-          <button type="button" class="custom-btn btn-2"  (click)="openModalEdit(p)">
-            Editar
+        <div *ngIf="this.is_dump==false" class="col col-6" data-label="Edit">
+          <button type="button" class="custom-btn btn-4" (click)="openModalEdit(p)">
+            Add
           </button>
         </div>
-        <div class="col col-6" data-label="Remove">
-          <button type="button" class="custom-btn btn-3"  (click)="removeProduto(p.id)">
-            Remover
+        <div *ngIf="this.is_dump==false" class="col col-6" data-label="Remove">
+          <button type="button" class="custom-btn btn-3" (click)="removeProduto(p)">
+            Descartar
           </button>
         </div>
       </li>
     </ul>
   </div>
 </div>
+
+
+<jw-modal id="select-estoque" class="modal3">
+  <div style="overflow:hidden; overflow-y:scroll;height: 100px;">
+    <div *ngFor="let item of estoques" style="margin-right: 0px;margin-bottom: 2px;" class="menu_btn">
+      <div (click)="drop_click2(item)" class="menubtn">
+        {{item.name}}
+      </div>
+    </div>
+  </div>
+
+</jw-modal>
+
+<jw-modal id="select-fornecedor" class="modal4">
+  <div style="overflow:hidden; overflow-y:scroll;height: 100px;">
+    <div *ngFor="let item of fornecedores" style="margin-right: 0px;margin-bottom: 2px;">
+      <div (click)="drop_click(item)" class="menubtn">
+        {{item.name}}
+      </div>
+    </div>
+  </div>
+
+</jw-modal>

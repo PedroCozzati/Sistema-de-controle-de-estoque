@@ -50,9 +50,9 @@ export class DashComponent {
     }
 
     consultaQuantidadeProdutos() {
-      this.http.get("http://localhost:3000/product-amount", { headers: { "Content-Type": 'application/json' } })
-        .subscribe(response => {
-          this.produto = response
-        })
+      this.http.get("http://localhost:3000/inventory-products-amount", { headers: { "Content-Type": 'application/json' } })
+      .subscribe(response => {
+        this.produto = response
+      })
     }
 }

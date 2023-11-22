@@ -33,7 +33,7 @@
         <hr/>
       </div>
       <div id="nav-content">
-        <a class="nav-button" *ngFor="let item of menuItems" mat-list-item [routerLink]="'/'+item"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon><span> {{item | titlecase}} </span></a>
+        <a class="nav-button" *ngFor="let item of menuItems" mat-list-item [routerLink]="'/'+item"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon><span> {{item=="expedicoes"? "Expedições":item | titlecase}} </span></a>
         <!-- <hr/>
         <div class="nav-button"><i class="fas fa-gem"></i><span>Codepen Pro</span></div> -->
         <div id="nav-content-highlight"></div>

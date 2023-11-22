@@ -8,6 +8,9 @@ import { NavComponent } from './nav/nav.component';
 import { UsersComponent } from './users/users.component';
 import { ClientsComponent } from './clients/clients.component';
 import { OrdersComponent } from './orders/orders.component';
+import { ExpedicoesComponent } from './expedicoes/expedicoes.component';
+import { FornecedoresComponent } from './fornecedores/fornecedores.component';
+import { EstoquesComponent } from './estoques/estoques.component';
 
 
 const routes: Routes = [
@@ -18,14 +21,14 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'clientes', component: ClientsComponent},
   {path: 'pedidos', component: OrdersComponent},
-  
-  // { path: 'tabuleiro/novo', component: NovoTabuleiroComponent },
-
-
+  {path: 'expedicoes', component: ExpedicoesComponent},
+  {path: 'fornecedores', component: FornecedoresComponent},
+  {path:'estoques', component:EstoquesComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
