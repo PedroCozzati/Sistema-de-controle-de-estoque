@@ -31,7 +31,8 @@ export class NavComponent {
   isLogin=true
   is_logged={}
   user:any
-  menuItems = ["dashboard", "pedidos", "clientes", "produtos", "fornecedores", "expedicoes","estoques"];
+  menuItems = [ "pedidos", "clientes", "produtos", "fornecedores","estoques"];
+  menuIcons = ["receipt", "people", "redeem", "store","dns"];
   
 
   ngOnInit(): void {
@@ -52,6 +53,12 @@ export class NavComponent {
         if(this.user.is_adm==true){
           this.local.set('is_adm',true)
           this.menuItems.push('usuarios')
+          this.menuIcons.push("face")
+          this.menuItems.splice(0,0,'dashboard')
+          this.menuIcons.splice(0,0,"donut_small")
+        }
+        else{
+          this.local.set('is_adm',false)
         }
         
       })

@@ -214,9 +214,16 @@ export class ProductsComponent {
     this.http.get("http://localhost:3000/orders-all", { headers: { "Content-Type": 'application/json' } })
     .subscribe(response => {
        this.verification = response
-       this.verification.forEach((element: { product: any[]; }) => {
+      //  console.log(this.verification)
+       this.verification.forEach((element: {
+         status: string; product: any[]; 
+}) => {
+        if(element.status!="EM ANDAMENTO"){
+          this.canDiscard=true
+        }
+        else{
          element.product.forEach(e => {
-           if (e.id === this.discard_product.id){
+           if (e.id === this.discard_product.id && element.status=="EM ANDAMENTO"){
              this.canDiscard=false
            }
            else{
@@ -224,6 +231,8 @@ export class ProductsComponent {
 
            }
          });
+         this.canDiscard=false
+        }
        });
     })
 
@@ -250,7 +259,7 @@ export class ProductsComponent {
 
   descartar(){
    
-    if(this.canDiscard===true){
+    if(this.canDiscard==true){
       this.http.delete(`http://localhost:3000/product/${this.discard_product.id}`, 
       { headers: { "Content-Type": 'application/json' } })
         .subscribe(response => {

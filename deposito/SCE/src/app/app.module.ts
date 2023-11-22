@@ -19,6 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CardComponent } from './card/card.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { AnnualSalesComponent } from './charts/annual-sales/annual-sales.component';
+import { AnnualSales2Component } from './charts/annual-sales copy/annual-sales.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from './_modal';
 import { HttpClientModule } from '@angular/common/http';
@@ -40,6 +41,7 @@ import { EstoquesComponent } from './estoques/estoques.component';
     DashComponent,
     CardComponent,
     AnnualSalesComponent,
+    AnnualSales2Component,
     LoginComponent,
     RootComponent,
     UsersComponent,

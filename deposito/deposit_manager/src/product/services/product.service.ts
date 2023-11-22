@@ -83,6 +83,36 @@ export class ProductService {
 
     }
 
+    async getQuantidadeProdutoPorMes() {
+        try {
+            var list=[]
+            var obj
+            var result=[]
+            var keyw 
+            var product = await this.productRepository.find({})
+            product.forEach(element => {    
+                var month = element.productDate.getMonth()+1
+                list.push(month)
+                
+            });
+
+            // list.forEach(element => {
+            //     keyw = "mes_"+element
+            //     obj={
+            //         mes: element
+            //         value:
+            //     }
+            // });
+            // result.push(obj)
+            // const sum = list.reduce((partialSum, a) => partialSum + a, 0);
+            return  list
+        }
+        catch (exception) {
+            throw exception
+        }
+
+    }
+
 
     async atualizaProduto(product: Product) {
         try {
@@ -102,6 +132,21 @@ export class ProductService {
         try {
 
             await this.productRepository.update(produto.id,{amount:produto.amount+produto.new_amount})
+
+            return;
+        }
+        catch (exception) {
+            throw exception
+        }
+
+    }
+
+    async subtraiQuantidade(produto:any) {
+        try {
+
+            var find = await this.productRepository.findOneBy({id:produto.id})
+
+            await this.productRepository.update(produto.id,{amount:find.amount-produto.new_amount})
 
             return;
         }

@@ -14,7 +14,7 @@ import { EstoquesComponent } from './estoques/estoques.component';
 
 
 const routes: Routes = [
-  {path: '', component: DashComponent},
+  {path: '', component: OrdersComponent},
   {path: 'dashboard', component: DashComponent},
   {path: 'produtos', component: ProductsComponent},
   {path: 'usuarios', component: UsersComponent},

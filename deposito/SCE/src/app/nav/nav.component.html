@@ -32,8 +32,8 @@
         <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
         <hr/>
       </div>
-      <div id="nav-content">
-        <a class="nav-button" *ngFor="let item of menuItems" mat-list-item [routerLink]="'/'+item"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon><span> {{item=="expedicoes"? "Expedições":item | titlecase}} </span></a>
+      <div id="nav-content" >
+        <a class="nav-button" *ngFor="let item of menuItems;index as i" mat-list-item [routerLink]="'/'+item"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon={{menuIcons[i]}}></mat-icon><span> {{item=="expedicoes"? "Expedições":item | titlecase}} </span></a>
         <!-- <hr/>
         <div class="nav-button"><i class="fas fa-gem"></i><span>Codepen Pro</span></div> -->
         <div id="nav-content-highlight"></div>
@@ -46,9 +46,9 @@
         justify-content: space-around;">
           <div>
             <div style="display: flex;flex-direction: row;justify-content: space-around;align-items: center;margin-right: 40px;">
-              <div id="nav-footer-avatar"><img src="https://gravatar.com/avatar/4474ca42d303761c2901fa819c4f2547"/></div>
+              <div id="nav-footer-avatar"><img src={{user.image}}/></div>
               <div id="nav-footer-titlebox">
-                <a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public" target="_blank">{{user.user_name}}</a>
+                <a id="nav-footer-title" target="_blank">{{user.user_name}}</a>
                 <span id="nav-footer-subtitle">{{user.is_adm==false?"Comum":"Admin"}}</span>
               </div>
             </div>
