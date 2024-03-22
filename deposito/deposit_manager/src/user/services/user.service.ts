@@ -11,16 +11,16 @@ export class UserService {
 
 
     async cadastraUsuario(user: UserDto) {
-        var adm =false;
-        if(user.email=='edivan@sce.com.br'){
-            adm=true
+        var adm = false;
+        if (user.email == 'edivan@sce.com.br') {
+            adm = true
         }
         try {
             await this.userRepository.save(
                 {
                     ...user,
-                    is_logged:false,
-                    is_adm:adm,
+                    is_logged: false,
+                    is_adm: adm,
                     register_date: new Date().toISOString()
                 }
             )
@@ -33,9 +33,9 @@ export class UserService {
 
     }
 
-    async deletaUsuario(id:number) {
+    async deletaUsuario(id: number) {
         try {
-            await this.userRepository.delete({"id":id})
+            await this.userRepository.delete({ "id": id })
             return;
         }
         catch (exception) {
@@ -44,17 +44,17 @@ export class UserService {
     }
 
 
-    async getUserByEmailPwd(nome:string,senha:string) {
+    async getUserByEmailPwd(nome: string, senha: string) {
         try {
-            var user = await this.userRepository.findOneBy({ email: nome,password:senha })
-            var adm =false;
-            if(user.email=='edivan@sce.com.br'){
-                adm=true
+            var user = await this.userRepository.findOneBy({ email: nome, password: senha })
+            var adm = false;
+            if (user.email == 'edivan@sce.com.br') {
+                adm = true
             }
 
             if (user)
                 return user
-        
+
         }
         catch (exception) {
             throw exception
@@ -73,32 +73,75 @@ export class UserService {
 
     }
 
-    async login(nome:string,senha:string) {
+    async getInactiveUsers() {
         try {
-            var user = await this.userRepository.findOneBy({ email: nome,password:senha })
-            var adm =false;
-            if(user.email=='edivan@sce.com.br'){
-                adm=true
-            }
+            var user = await this.userRepository.findBy({active:false})
 
-            if (user){
+            // var activeUserList = []
 
+            // user.forEach(usuario => {
+            //     if(usuario.is_active == true){
+            //         activeUserList.push(usuario)
+            //     }
+            // });
+
+            return user
+            
+         }
+        catch (exception) { 
+            throw exception
+        }
+    }
+
+    async getActiveUsers() {
+        try {
+
+            var user = await this.userRepository.findBy({active:true, is_adm:false})
+
+            // var activeUserList = []
+
+            // user.forEach(usuario => {
+            //     if(usuario.is_active == true){
+            //         activeUserList.push(usuario)
+            //     }
+            // });
+
+            return user
+            
+         }
+        catch (exception) { 
+            throw exception
+        }
+    }
+
+    async login(nome: string, senha: string) {
+        try {
+            var user = await this.userRepository.findOneBy({ email: nome, password: senha })
+            var adm = false;
+
+            if(user.active==true){
+        
+                if (user) {
+    
+                    await this.userRepository.save(
+                        {
+                            ...user,
+                            is_logged: true,
+                            is_active:user.active,
+                            is_adm: user.is_adm,
+                            register_date: user.register_date
+                        })
+    
+                    return true
+                }
                 
-                await this.userRepository.save(
-                    {
-                        ...user,
-                        is_logged:true,
-                        is_adm:adm,
-                        register_date: new Date().toISOString()
-                    })
-
-                return true
+                else
+                    throw Error("Usuário não encontrado")
             }
 
             else
-                return false
-            
-        
+                throw Error("Usuário não está ativo no sistema, entre em contato com o ADM")
+
         }
         catch (exception) {
             throw exception
@@ -106,27 +149,25 @@ export class UserService {
 
     }
 
-  
-
-    async logOff(nome:string,senha:string) {
+    async logOff(nome: string, senha: string) {
         try {
-            var user = await this.userRepository.findOneBy({ email: nome,password:senha })
+            var user = await this.userRepository.findOneBy({ email: nome, password: senha })
             var adm = false
 
-            if(user.email=='edivan@sce.com.br'){
-                adm=true
+            if (user.email == 'edivan@sce.com.br') {
+                adm = true
             }
 
             if (user)
-            
+
                 await this.userRepository.save(
                     {
                         ...user,
-                        is_logged:false,
-                        is_adm:adm,
-                        register_date: new Date().toISOString()
+                        is_logged: false,
+                        is_adm: user.is_adm,
+                        register_date: user.register_date
                     })
-        
+
         }
         catch (exception) {
             throw exception
@@ -134,63 +175,52 @@ export class UserService {
 
     }
 
-    
 
 
 
-    // async getAllProdutos() {
-    //     try {
-    //         var product = await this.productRepository.find({})
-    //         return  product
-    //     }
-    //     catch (exception) {
-    //         throw exception
-    //     }
+    async activate(user_email: string) {
+        try {
+            var user = await this.userRepository.findOneBy({ email:user_email})
+            var adm = false
+            var is_active = true
+            if(user){
+                await this.userRepository.save(
+                    {
+                        ...user,
+                        is_adm: user.is_adm,
+                        is_logged: user.is_logged,
+                        active:is_active,
+                        register_date: user.register_date
+                    })
+            }
 
-    // }
+        }
+        catch (exception) {
+            throw exception
+        }
 
-    // async getQuantidadeProduto() {
-    //     try {
-    //         var list=[]
-    //         var product = await this.productRepository.find({})
-    //         product.forEach(element => {    
-    //             list.push(element.amount)
-                
-    //         });
-    //         const sum = list.reduce((partialSum, a) => partialSum + a, 0);
-    //         return  sum
-    //     }
-    //     catch (exception) {
-    //         throw exception
-    //     }
-
-    // }
+    }
 
 
-    // async atualizaProduto(product: User) {
-    //     try {
+    async inactivateUser(user_email: string) {
+        try {
+            var user = await this.userRepository.findOneBy({email:user_email})
 
-    //         await this.productRepository.update(product.id,product)
-
-    //         return;
-    //     }
-    //     catch (exception) {
-    //         throw exception
-    //     }
-
-    // }
-
-    // async deletaProduto(id: number) {
-    //   try {
-    //     await this.productRepository.delete({"id": id })
-  
-    //     return;
-    //   } catch (exception) {
-    //     throw exception
-    //   }
-    // }
-  
-
+            if (user) {
+                await this.userRepository.save(
+                    {
+                        ...user,
+                        is_logged: user.is_logged,
+                        is_adm: user.is_adm,
+                        active: false,
+                        register_date: user.register_date
+                    })
+            }
+        }
+        catch (exception) {
+            throw exception
+        }
+    }
 
 
 }

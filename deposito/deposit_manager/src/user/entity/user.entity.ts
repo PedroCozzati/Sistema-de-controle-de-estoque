@@ -5,6 +5,9 @@ export class User{
 
     @PrimaryGeneratedColumn()
     id: number;
+
+    @Column()
+    image: string;
     
     @Column({name: 'user_name'})
     user_name: string;
@@ -17,6 +20,9 @@ export class User{
 
     @Column()
     is_adm: boolean;
+
+    @Column()
+    active: boolean;
 
     @Column()
     is_logged: boolean;

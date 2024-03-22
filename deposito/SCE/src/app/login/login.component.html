@@ -20,8 +20,11 @@
 
             </div>
         </div>
-        <button class="login1" (click)="login2()">Entrar </button>
-        <div class="footer"><span>Cadastro</span><span>Esqueceu a senha?</span></div>
+        <button class="login1" (click)="login()">Entrar </button>
+        <div class="footer" style="width: 300px;">
+            <!-- <span>Cadastro</span> -->
+         
+        </div>
     </div>
 
 
@@ -35,7 +38,7 @@
                 <h3 class="card-hover__title">
                  Bem-vindo ao sistema!
                 </h3>
-                <p class="card-hover__text">Verifique com cuidado os seus dados quando se cadastrar e fizer o login.</p>
+                <p class="card-hover__text"></p>
                 
               </div>
              
@@ -49,3 +52,26 @@
     <app-nav></app-nav>
 
 </div>
+
+
+<jw-modal id="register">
+    <div>
+        Cadastre-se
+    </div>
+    <div>
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" class="form-control" maxlength="20" [(ngModel)]="user.nome" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" class="form-control" [(ngModel)]="user.email" />
+        </div>
+        <div class="form-group">
+            <label>Senha</label>
+            <input type="password" class="form-control" [(ngModel)]="user.password" />
+          </div>
+      </div>
+      <button class="login1" (click)="register(user.nome,user.email,user.password)">Registra</button>
+
+</jw-modal>

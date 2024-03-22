@@ -15,18 +15,21 @@ export class UsersComponent {
     private ngZone: NgZone,
     private router: Router,
   ) { }
-  produto: any = {}
-  produtos: any = []
+
+  active_users:any = []
+  inactive_users:any = []
 
   ngOnInit(): void {
-    this.consultaProdutos()
+    this.findActiveUsers()
   }
 
   temp_id=0
+  user: any = {}
   
 
   openModal(id:string){
     this.modalService.open(id);
+    this.findInactiveUsers()
   }
 
   openModalEdit(id:number){
@@ -37,54 +40,63 @@ export class UsersComponent {
     this.modalService.close(id)
   }
 
-
-  novoProduto(produto: any) {
-    this.http.post(`http://localhost:3000/product`, 
-    {
-      product_name:produto.nome,
-      amount:produto.amount,
-    }, 
-    { headers: { "Content-Type": 'application/json' } })
+  findActiveUsers() {
+    this.http.get("http://localhost:3000/users-active", { headers: { "Content-Type": 'application/json' } })
       .subscribe(response => {
+        this.active_users = response
       })
-      this.modalService.close('novo-produto')
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['products']);
+  }
+
+  findInactiveUsers(){
+    this.http.get("http://localhost:3000/users-inactive", { headers: { "Content-Type": 'application/json' } })
+    .subscribe(response => {
+      this.inactive_users = response
+    })
+  }
+
+  activateUser(email:string){
+    this.http.post("http://localhost:3000/activate",{"email":email}, { headers: { "Content-Type": 'application/json' } })
+    .subscribe(response => {
+      this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['usuarios']);
+
     }); 
-
+    })
   }
 
-  editProduto(produto: any) {
-    this.http.put(`http://localhost:3000/product/${this.temp_id}`, 
-    {
-      product_name:produto.nome,
-      amount:produto.amount,
-    }, 
-    { headers: { "Content-Type": 'application/json' } })
-      .subscribe(response => {
-      })
-      this.modalService.close('edit-produto')
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['products']);
+  inactivateUser(email:string){
+    this.http.post("http://localhost:3000/inactivate",{"email":email}, { headers: { "Content-Type": 'application/json' } })
+    .subscribe(response => {
+      this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['usuarios']);
+
     }); 
-
+    })
   }
 
-  removeProduto(id:number) {
-    this.http.delete(`http://localhost:3000/product/${id}`, 
-    { headers: { "Content-Type": 'application/json' } })
-      .subscribe(response => {
-      })
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['products']);
-    }); 
+  // register(user: string, email: string, pwd: string,) {
+  //   this.http.post
+  //     (`http://localhost:3000/user`,
+  //       {
+  //         user_name: user,
+  //         email: email,
+  //         password: pwd
+  //       },
+  //       { headers: { "Content-Type": 'application/json' } })
 
-  }
+  //     .subscribe(
+  //       res => {
+  //         alert("cadastrado com sucesso")
+  //       },
+  //       err => {
+  //         // this.service.login = false
+  //         alert("algo deu errado")
+  //       });
 
-  consultaProdutos() {
-    this.http.get("http://localhost:3000/users", { headers: { "Content-Type": 'application/json' } })
-      .subscribe(response => {
-        this.produtos = response
-      })
-  }
+
+
+
+
+  // }
+
 }

@@ -24,11 +24,45 @@
         <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
             <annual-chart></annual-chart>
         </mat-grid-tile>
-      <mat-grid-tile style="margin-left: 80px;">
+
+        <!-- <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+          <annual-chart-2></annual-chart-2>
+      </mat-grid-tile> -->
+      <mat-grid-tile style="margin-left: 60px;">
         <div style="align-items: center;display: flex;flex-direction: column;justify-content: center;padding: 20px;">
           <div style="text-align: center;font-size: 15px;font-weight: 800;">Quantidade de produtos no estoque</div>
         <div class="test" style="margin-top: 20px;">
             {{produto.toString()}}
+        </div>
+        </div>
+        
+      </mat-grid-tile>
+
+      <mat-grid-tile style="margin-left: 60px;">
+        <div style="align-items: center;display: flex;flex-direction: column;justify-content: center;padding: 20px;">
+          <div style="text-align: center;font-size: 15px;font-weight: 800;">Pedidos rejeitados</div>
+        <div class="test1" style="margin-top: 20px;">
+            {{this.closed.length}}
+        </div>
+        </div>
+        
+      </mat-grid-tile>
+
+      <mat-grid-tile style="margin-left: 60px;">
+        <div style="align-items: center;display: flex;flex-direction: column;justify-content: center;padding: 20px;">
+          <div style="text-align: center;font-size: 15px;font-weight: 800;">Pedidos concluidos</div>
+        <div class="test2" style="margin-top: 20px;">
+            {{this.finished.length}}
+        </div>
+        </div>
+        
+      </mat-grid-tile>
+
+      <mat-grid-tile style="margin-left: 60px;">
+        <div style="align-items: center;display: flex;flex-direction: column;justify-content: center;padding: 20px;">
+          <div style="text-align: center;font-size: 15px;font-weight: 800;">Pedidos em andamento</div>
+        <div class="test3" style="margin-top: 20px;">
+            {{this.open.length}}
         </div>
         </div>
         

@@ -12,7 +12,9 @@ import { ModalService } from '../_modal';
 })
 export class DashComponent {
   produto: any
-
+  closed:any
+  finished:any
+  open:any
   // miniCardData = MINICARDDATA;
 
   /** Based on the screen size, switch from standard to one column per row */
@@ -47,12 +49,36 @@ export class DashComponent {
   
     ngOnInit(): void {
       this.consultaQuantidadeProdutos()
+      this.consultaPedidosConcluidos()
+      this.consultaPedidosRejeitados()
+      this.consultaPedidosAndamento()
     }
 
     consultaQuantidadeProdutos() {
-      this.http.get("http://localhost:3000/product-amount", { headers: { "Content-Type": 'application/json' } })
-        .subscribe(response => {
-          this.produto = response
-        })
+      this.http.get("http://localhost:3000/inventory-products-amount", { headers: { "Content-Type": 'application/json' } })
+      .subscribe(response => {
+        this.produto = response
+      })
+    }
+
+    consultaPedidosConcluidos() {
+      this.http.get("http://localhost:3000/orders-finished", { headers: { "Content-Type": 'application/json' } })
+      .subscribe(response => {
+        this.finished = response
+      })
+    }
+
+    consultaPedidosRejeitados() {
+      this.http.get("http://localhost:3000/orders-closed", { headers: { "Content-Type": 'application/json' } })
+      .subscribe(response => {
+        this.closed = response
+      })
+    }
+
+    consultaPedidosAndamento() {
+      this.http.get("http://localhost:3000/orders-open", { headers: { "Content-Type": 'application/json' } })
+      .subscribe(response => {
+        this.open = response
+      })
     }
 }

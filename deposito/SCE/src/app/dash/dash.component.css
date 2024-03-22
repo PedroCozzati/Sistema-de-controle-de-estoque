@@ -113,3 +113,40 @@
   font-weight: bold;
   color: aliceblue;
 }
+
+.test1 {
+  background: #f3564b;
+  padding: 40px;
+  text-align: center;
+  vertical-align:middle;
+  max-width: 250px;
+  width: 130px;
+  font-size: 70px;
+  font-weight: bold;
+  color: aliceblue;
+}
+
+.test2 {
+  background: #1cc475;
+  padding: 40px;
+  text-align: center;
+  vertical-align:middle;
+  max-width: 250px;
+  width: 130px;
+  font-size: 70px;
+  font-weight: bold;
+  color: aliceblue;
+}
+
+.test3 {
+  background: #182653;
+  padding: 40px;
+  text-align: center;
+  vertical-align:middle;
+  max-width: 250px;
+  width: 130px;
+  font-size: 70px;
+  font-weight: bold;
+  color: aliceblue;
+}
+
